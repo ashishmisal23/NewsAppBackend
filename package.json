@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "mongoose": "^8.3.0",
+    "nodemon": "^3.1.0"
+  },
+  "name": "news-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ashish Misal",
+  "license": "ISC",
+  "description": ""
+}
