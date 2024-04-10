@@ -7,8 +7,6 @@ const app = express();
 // Use CORS middleware
 app.use(cors());
 
-const port = 5000;
-
 const newsRoute = require('./routes/newsRoute');
 const userRoute = require('./routes/userRoute');
 
@@ -18,4 +16,7 @@ app.use('/api/users/', userRoute);
 
 app.get('/', (req, res) => res.send('Hello Ashish'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`));
+const server = app.listen(0, () => {
+  const port = server.address().port;
+  console.log(`Example app listening on port ${port}`);
+});
