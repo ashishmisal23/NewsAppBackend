@@ -16,7 +16,9 @@ app.use('/api/users/', userRoute);
 
 app.get('/', (req, res) => res.send('Hello Ashish'));
 
-const server = app.listen(0, () => {
-  const port = server.address().port;
-  console.log(`Example app listening on port ${port}`);
+const port = process.env.PORT || 5000; // Use the specified port in .env file or default to 5000
+
+const server = app.listen(port, () => {
+  console.log(`Server on port ${port}`);
+  console.log(`http://localhost:${port}`);
 });
