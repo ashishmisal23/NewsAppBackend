@@ -30,13 +30,13 @@ router.post('/getnewsitembyid/:newsid', async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error(error);
-        res.status(400).send('Error fetching news item');
+        res.status(400).send('Error fetching news item..');
     }
 });
 
-router.post('api/getnewsitemsbyemail/${user}', async (req, res) => {
+router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
-        const email = req.body.email; // Access email from request body
+        const email = req.body.email; 
         const newsItems = await NewsItemModel.find({ "postedBy.email": user.email });
         res.json(newsItems);
     } catch (error) {
@@ -46,16 +46,5 @@ router.post('api/getnewsitemsbyemail/${user}', async (req, res) => {
 });
 
 
-
-// router.post('/getnewsitemsbyemail', async (req, res) => {
-//     try {
-//         const { email } = req.body;
-//         const newsItems = await NewsItemModel.find({ 'postedBy.email': email });
-//         res.json(newsItems);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send('Internal server error');
-//     }
-// });
 
 module.exports = router;
