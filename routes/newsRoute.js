@@ -25,18 +25,25 @@ router.get('/getallnewsitems', async (req, res) => {
 
 router.post('/getnewsitembyid/:newsid', async (req, res) => {
     try {
-        const newsid = req.params.newsid;
-        const data = await NewsItemModel.findOne({ _id: newsid });
-        res.json(data);
+        let newsId = req.params.newsid;
+        console.log(newsId);
+        const response = await NewsItemModel.find({"_id":newsId});
+        console.log(response);
+        if (!response) {
+            return res.status(404).json({ message: "News item not found" });
+        }
+        res.json(response);
     } catch (error) {
         console.error(error);
         res.status(400).send('Error fetching news item..');
     }
 });
 
+
 router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
         const email = req.params.email;
+
         const newsItems = await NewsItemModel.find({ "postedBy.email": email });
         res.json(newsItems);
     } catch (error) {
