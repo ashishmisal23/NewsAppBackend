@@ -11,14 +11,13 @@ router.post('/register', async function (req, res) {
     res.status(400).send(error)
   }
 })
+
 router.post('/login', async (req, res) => {
   try {
     const result = await UserModel.findOne({
       email: req.body.email,
       password: req.body.password,
     })
-    // delete result.password
-    // res.send(result)
     if (result) {
       const userobj = result.toObject()
       delete userobj.password
@@ -30,5 +29,15 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.post('/profile', async function (req, res) {
+  try {
+    const email = req.body.email;
+    const result = await UserModel.findOne({ email: email })
+    res.json(result);
+
+  } catch (error) {
+    res.status(400).send('Something Went Wrong')
+  }
+})
 
 module.exports = router
