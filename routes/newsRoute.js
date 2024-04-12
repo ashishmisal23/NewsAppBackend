@@ -41,7 +41,7 @@ router.post('/getnewsitembyid/:newsid', async function (req, res) {
 
 router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
-        
+
         let email = req.body.email;
         const payload = { "postedByemail": email };
         const newsItems = await NewsItemModel.find(payload);
