@@ -6,7 +6,7 @@ router.post('/register', async function (req, res) {
   try {
     const existingUser = await UserModel.findOne({ email: req.body.email });
     if (existingUser) {
-      return res.status(400).send('User with this email already exists');
+      return res.status(404).send('User with this email already exists');
     }
     else {
       const newUser = new UserModel({
