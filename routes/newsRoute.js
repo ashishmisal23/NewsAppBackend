@@ -54,6 +54,25 @@ router.delete('/deletenews/:newsid', async function (req, res) {
     }
 });
 
+router.put('/editnews/:newsid', async function (req, res) {
+    try {
+        let newsid = req.params.newsid;
+        console.log(newsid, req.body);
+        const updatedNewsItem = await NewsItemModel.findOneAndUpdate(
+            { _id: newsid },
+            req.body,
+            { new: true } // This option returns the updated document
+        );
+        if (!updatedNewsItem) {
+            return res.status(404).json({ error: 'News Not Found' });
+        }
+        res.status(200).json({ message: 'News Updated Successfully', updatedNewsItem });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
