@@ -8,13 +8,16 @@ router.post('/register', async function (req, res) {
     if (existingUser) {
       return res.status(400).send('User with this email already exists');
     }
-    const newUser = new UserModel({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    });
-    await newUser.save();
-    res.send('User added successfully');
+    else {
+      const newUser = new UserModel({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+      await newUser.save();
+      res.send('User added successfully');
+    }
+
   } catch (error) {
     res.status(500).send('Internal server error');
   }
