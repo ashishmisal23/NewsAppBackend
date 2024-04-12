@@ -4,30 +4,43 @@ const router = express.Router()
 
 router.post('/register', async function (req, res) {
   try {
-    const newitem = new UserModel(req.body)
-    await newitem.save()
-    res.send('User added successfully')
+
+
+    const newUser = new UserModel({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    await newUser.save();
+
+    res.send('User added successfully');
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).send(error);
   }
-})
+});
+
 
 router.post('/login', async (req, res) => {
   try {
-    const result = await UserModel.findOne({
-      email: req.body.email,
-      password: req.body.password,
-    })
-    if (result) {
-      const userobj = result.toObject()
-      delete userobj.password
-      res.send(userobj)
+    const user = await UserModel.findOne({ email: req.body.email });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (req.body.password === user.password && req.body.email === user.email) {
+      const userWithoutPassword = { ...user.toObject(), password: undefined };
+      return res.json(userWithoutPassword);
+    } else {
+      return res.status(401).json({ error: 'Invalid email or password' });
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).send('error')
+    console.error(error);
+    res.status(500).send('Internal server error');
   }
-})
+});
+
 
 router.post('/profile', async function (req, res) {
   try {
