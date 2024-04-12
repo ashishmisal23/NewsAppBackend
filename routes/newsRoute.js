@@ -39,6 +39,23 @@ router.post('/getnewsitembyid/:newsid', async function (req, res) {
     }
 });
 
+router.delete('/deletenews/:newsid', async function (req, res) {
+    try {
+        let newsid = req.params.newsid;
+        console.log(newsid);
+        const data = await NewsItemModel.deleteOne({ _id: newsid });
+        console.log(data);
+        if (data.deletedCount === 0) {
+            return res.status(404).json({ error: 'News Not Deleted' });
+        }
+        res.status(200).json({ message: 'News Deleted Successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
 
