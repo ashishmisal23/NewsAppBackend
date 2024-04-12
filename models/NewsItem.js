@@ -5,10 +5,8 @@ const newsItemSchema = new mongoose.Schema(
         title: { type: String, required: true },
         description: { type: String, required: true },
         content: { type: String, required: true },
-        postedBy: {
-            userid: { type: String, required: true },
-            email: { type: String, required: true }
-        }
+        postedByuserid: { type: String, required: true },
+        postedByemail: { type: String, required: true }
     },
     {
         timestamps: true,

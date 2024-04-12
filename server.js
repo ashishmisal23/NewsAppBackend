@@ -14,9 +14,10 @@ app.use(express.json());
 app.use('/api/newsitems/', newsRoute);
 app.use('/api/users/', userRoute);
 
-app.get('/', (req, res) => res.send('Hello Ashish'));
+app.get('/', (req, res) => res.send('Invalid Requrest...'));
 
-const port = process.env.PORT || 5000; // Use the specified port in .env file or default to 5000
+const port = process.env.PORT || 5000; 
+// Use the specified port in .env file or default to 5000
 
 const server = app.listen(port, () => {
   console.log(`Server on port ${port}`);

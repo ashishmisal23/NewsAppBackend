@@ -23,28 +23,28 @@ router.get('/getallnewsitems', async (req, res) => {
     }
 });
 
-router.post('/getnewsitembyid/:newsid', async (req, res) => {
+router.post('/getnewsitembyid/:newsid', async function (req, res) {
     try {
-        let newsId = req.params.newsid;
-        console.log(newsId);
-        const response = await NewsItemModel.find({"_id":newsId});
-        console.log(response);
-        if (!response) {
-            return res.status(404).json({ message: "News item not found" });
+        let newsid = req.params.newsid;
+        console.log(newsid);
+        const data = await NewsItemModel.findById(newsid.toString());
+        console.log(data);
+        if (!data) {
+            return res.status(404).json({ error: 'News item not found' });
         }
-        res.json(response);
+        res.json(data);
     } catch (error) {
         console.error(error);
-        res.status(400).send('Error fetching news item..');
+        res.status(500).json({ error: 'Internal Server Error...' });
     }
 });
 
-
 router.post('/getnewsitemsbyemail/:email', async (req, res) => {
     try {
-        const email = req.params.email;
-
-        const newsItems = await NewsItemModel.find({ "postedBy.email": email });
+        
+        let email = req.body.email;
+        const payload = { "postedByemail": email };
+        const newsItems = await NewsItemModel.find(payload);
         res.json(newsItems);
     } catch (error) {
         console.error(error);
