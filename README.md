@@ -1,16 +1,15 @@
 ### News App
-
 ```markdown
-# News App
+# News App Backend
 
-This project is a news application built using React for the frontend and Node.js with Express for the backend. It allows users to view and post news articles.
+This project is the backend for a news application built using Node.js with Express.
 
 ## Features
 
-- **User Authentication**: Users can register, log in, and log out. Authentication is handled using JSON Web Tokens (JWT).
-- **View News Articles**: Users can view news articles posted by other users.
-- **Post News Articles**: Authenticated users can post news articles.
-- **Profile Page**: Users can view their profile page with their posted news articles.
+- **API Endpoints**: Provides endpoints for user authentication, news articles CRUD operations, and user profile management.
+- **User Authentication**: Handles user registration, login, and logout using JSON Web Tokens (JWT).
+- **Database Integration**: Interacts with MongoDB for storing user data and news articles.
+- **Error Handling**: Implements robust error handling for better reliability.
 
 ## Installation
 
@@ -20,87 +19,57 @@ This project is a news application built using React for the frontend and Node.j
    git clone https://github.com/ashishmisal23/News-App.git
    ```
 
-2. Navigate into the project directory:
+2. Navigate into the backend directory:
 
    ```bash
-   cd News-App
+   cd News-App/server
    ```
 
-3. Install dependencies for the frontend:
+3. Install dependencies:
 
    ```bash
-   cd client
    npm install
    ```
 
-4. Install dependencies for the backend:
+4. Set up environment variables:
 
-   ```bash
-   cd ..
-   npm install
-   ```
-
-5. Set up environment variables:
-
-   Create a `.env` file in the root directory with the following variables:
+   Create a `.env` file in the backend directory with the following variables:
 
    ```plaintext
    PORT=5000
    MONGO_URL=your-mongodb-url
+   JWT_SECRET=your-jwt-secret
    ```
 
-6. Run the development server:
+   Replace `your-mongodb-url` with the URL of your MongoDB database and `your-jwt-secret` with a secret key for JWT.
+
+5. Run the development server:
 
    ```bash
-   npm run dev
+   npm start
    ```
 
-   This will start both the frontend and backend servers concurrently.
+   This will start the backend server.
 
-7. Access the application in your web browser:
-
-   Open [http://localhost:3000](http://localhost:3000) to view the frontend.
-   Open [http://localhost:5000](http://localhost:5000) to run the backend.
-
-## Live Website
-
-You can view the live website [here](https://newsapp-ashishmisal.vercel.app).
-
-## GitHub Repository
-
-The source code is available on GitHub at: [https://github.com/ashishmisal23/News-App](https://github.com/ashishmisal23/News-App).
-
-## Technologies Used
-
-- React
-- Node.js
-- Express
-- MongoDB
-- Axios
-- React Router
+6. Access the API endpoints using tools like Postman or integrate with the frontend.
 
 ## Folder Structure
 
 ```
-News-App/
+server/
 │
-├── client/          # Frontend React application
-│   ├── public/
-│   │    └── index.html
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── App.js
-│       └── index.js
-│
-├── server/          # Backend Node.js application
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
-│   ├── dbConnect.js
-│   └── server.js│
-└── README.md
+├── models/          # Data models for MongoDB collections
+├── routes/          # API route handlers
+├── utils/           # Utility functions
+├── dbConnect.js     # MongoDB connection setup
+└── server.js        # Express server setup
 ```
+
+## Technologies Used
+
+- Node.js
+- Express
+- MongoDB
 
 ## Contributing
 
@@ -111,5 +80,4 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 This project is licensed under the [MIT License](LICENSE).
 ```
 
-I've added the GitHub repository link under the "GitHub Repository" section and the live website link under the "Live Website" section.
-You can now use this README.md file in your project repository.
+With this README, you have detailed instructions and information specifically for the backend code of your project.
