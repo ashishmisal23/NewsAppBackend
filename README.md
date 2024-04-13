@@ -16,7 +16,7 @@ This project is the backend for a news application built using Node.js with Expr
 1. Clone the repository:
 
    ```bash
-   git clone [https://github.com/ashishmisal23/NewsAppBackend.git](https://github.com/ashishmisal23/NewsAppBackend.git)
+   git clone "https://github.com/ashishmisal23/NewsAppBackend.git"
    ```
 
 2. Navigate into the backend directory:
