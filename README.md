@@ -60,7 +60,6 @@ server/
 │
 ├── models/          # Data models for MongoDB collections
 ├── routes/          # API route handlers
-├── utils/           # Utility functions
 ├── dbConnect.js     # MongoDB connection setup
 └── server.js        # Express server setup
 ```
@@ -70,6 +69,7 @@ server/
 - Node.js
 - Express
 - MongoDB
+- Axios
 
 ## Contributing
 
